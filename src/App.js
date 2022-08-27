@@ -50,9 +50,6 @@ function App() {
   );
 }
 
-const contactInner = document.getElementById('contactInner');
-const contactOuter = document.getElementById('contactOuter');
-
 //Window scroll persistence
 document.addEventListener("DOMContentLoaded", function (event) {
   var scrollpos = localStorage.getItem('scrollpos');
@@ -70,52 +67,60 @@ window.addEventListener("scroll", function () {
   if (value > (this.window.innerHeight * 4)) {
     console.log("5");
     this.document.getElementById('indicator').style.transform = "translateY(200px)";
-    contactInner.style.backgroundImage = "url()";
-    contactInner.style.backgroundColor = "#222";
-    contactInner.innerHTML = "Contact me";
-    contactOuter.style.top = "10vh";
-    contactOuter.style.left = "25vw";
-    contactOuter.style.width = "min(460px, 50%)";
-    contactOuter.style.borderRadius = "30px";
+    this.document.getElementById('contactInner').style.backgroundImage = "url()";
+    this.document.getElementById('contactInner').style.backgroundColor = "#222";
+    this.document.getElementById('contactInner').innerHTML = "Contact me";
+    this.document.getElementById('contactOuter').style.top = "10vh";
+    this.document.getElementById('contactOuter').style.left = "25vw";
+    this.document.getElementById('contactOuter').style.width = "min(460px, 50%)";
+    this.document.getElementById('contactOuter').style.borderRadius = "30px";
   }
   else if (value > (this.window.innerHeight * 2.7)) {
     console.log("4");
+    this.document.getElementById('contactInner').innerHTML = "";
+    this.document.getElementById('contactInner').style.backgroundImage = "url(" + mailIcon + ")";
+    this.document.getElementById('contactInner').style.backgroundColor = "";
+    this.document.getElementById('contactOuter').style.top = "90vh";
+    this.document.getElementById('contactOuter').style.left = "46vw";
+    this.document.getElementById('contactOuter').style.width = "8vh";
+    this.document.getElementById('contactOuter').style.height = "8vh";
+    this.document.getElementById('contactOuter').style.borderRadius = "50px";
     this.document.getElementById('indicator').style.transform = "translateY(150px)";
   }
   else if (value > (this.window.innerHeight * 1.8)) {
     console.log("3");
     this.document.getElementById('contactInner').innerHTML = "";
     this.document.getElementById('contactInner').style.backgroundImage = "url(" + mailIcon + ")";
-    contactOuter.style.top = "90vh";
-    contactOuter.style.left = "46vw";
-    contactOuter.style.width = "8vh";
-    contactOuter.style.height = "8vh";
-    contactOuter.style.borderRadius = "50px";
-    contactInner.style.backgroundColor = "";
+    this.document.getElementById('contactInner').style.backgroundColor = "";
+    this.document.getElementById('contactOuter').style.top = "90vh";
+    this.document.getElementById('contactOuter').style.left = "46vw";
+    this.document.getElementById('contactOuter').style.width = "8vh";
+    this.document.getElementById('contactOuter').style.height = "8vh";
+    this.document.getElementById('contactOuter').style.borderRadius = "50px";
     this.document.getElementById('indicator').style.transform = "translateY(100px)";
   }
   else if (value >= (this.window.innerHeight * .9)) {
     console.log("2");
     this.document.getElementById('indicator').style.transform = "translateY(50px)";
-    contactInner.innerHTML = "";
-    contactInner.style.backgroundImage = "url(" + mailIcon + ")";
-    contactInner.style.backgroundColor = "";
-    contactOuter.style.top = "90vh";
-    contactOuter.style.left = "46vw";
-    contactOuter.style.width = "8vh";
-    contactOuter.style.height = "8vh";
-    contactOuter.style.borderRadius = "50px";
+    this.document.getElementById('contactInner').innerHTML = "";
+    this.document.getElementById('contactInner').style.backgroundImage = "url(" + mailIcon + ")";
+    this.document.getElementById('contactInner').style.backgroundColor = "";
+    this.document.getElementById('contactOuter').style.top = "90vh";
+    this.document.getElementById('contactOuter').style.left = "46vw";
+    this.document.getElementById('contactOuter').style.width = "8vh";
+    this.document.getElementById('contactOuter').style.height = "8vh";
+    this.document.getElementById('contactOuter').style.borderRadius = "50px";
   }
   else if (value < this.window.innerHeight) {
     console.log("1");
     this.document.getElementById('indicator').style.transform = "translateY(0px)";
-    contactInner.style.backgroundImage = "url()";
-    contactInner.style.backgroundColor = "#222";
-    contactInner.innerHTML = "Contact me";
-    contactOuter.style.top = "0vh";
-    contactOuter.style.left = "25vw";
-    contactOuter.style.width = "min(460px, 50%)";
-    contactOuter.style.borderRadius = "30px";
+    this.document.getElementById('contactInner').style.backgroundImage = "url()";
+    this.document.getElementById('contactInner').style.backgroundColor = "#222";
+    this.document.getElementById('contactInner').innerHTML = "Contact me";
+    this.document.getElementById('contactOuter').style.top = "0vh";
+    this.document.getElementById('contactOuter').style.left = "25vw";
+    this.document.getElementById('contactOuter').style.width = "min(460px, 50%)";
+    this.document.getElementById('contactOuter').style.borderRadius = "30px";
   }
 });
 export default App;

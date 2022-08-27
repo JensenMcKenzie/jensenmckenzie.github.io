@@ -144,7 +144,7 @@ p {
 .menu:hover {
   animation: none;
   width: 200px;
-  height: 100px;
+  height: 10vh;
   border-radius: 40px;
   line-height: 85px;
   font-size: 20px;
@@ -378,8 +378,7 @@ p {
 
 #submit{
   position: relative;
-  width: 20%;
-  margin-inline: 40%;
+  width: 20vw;
   background-color: #222;
   color: white;
   border-radius: 2vw;
@@ -404,3 +403,12 @@ p {
   background-color: blue;
 }
 
+.ripples {
+  width: 20%;
+  height: 20px;
+  border-radius: 2vw;
+}
+
+.submitWrapper {
+  width: 100%;
+}
