@@ -1,4 +1,5 @@
 import './App.css';
+import * as React from 'react';
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from '@react-three/drei';
 import { Suspense, useRef } from 'react';
@@ -6,47 +7,71 @@ import mailIcon from './assets/mail-icon.png';
 import Form from './form.js';
 import Contact from './contact.js';
 import Menu from './menu.js';
+import { useParallax, ParallaxProvider, Parallax } from 'react-scroll-parallax';
+import { AnimationLoader } from 'three';
+import { useSpring, animated } from "@react-spring/web";
+import test from './assets/test.svg';
+import Card from './Card.js';
+import Minimap from './Minimap';
+import PageMap from 'react-pagemap'
+
 function App() {
-
-
+ 
+  const arrowStyle = useSpring({
+    loop: { reverse: true },
+    from: { y: 0 },
+    to: { y: 10 },
+    config: {
+      duration: 700
+    },
+  })
+  
   return (
-    <div className="App">
-      <div id='indicator'>|</div>
-      <Menu/>
-      <div className='grad' id='hello'>Hello.</div>
-      <Contact />
-      <div id='introduction'>
-        My name is <span className='grad'>Jensen McKenzie</span>.<br></br>I am a software developer.</div>
-      <div className='grad' id="second">
-        Projects</div><div id="projectsInfo">Currently, I am working on developing this website, as well as others. I also have extensive experience in game development (virtual reality, 3D applications, ect.), fullstack development (frontend/backend), and other projects.</div>
-      <div id="displayContainer">
-        <a href='https://github.com/JensenMcKenzie/SituationalVR' className='containerElement' id='displayOne'><span className='displayText'>Virtual Reality Development</span></a>
-        <a href='https://github.com/JensenMcKenzie/main_portfolio' className='containerElement' id='displayTwo'><span className='displayText'>Fullstack Development</span></a>
-        <a href='https://github.com/JensenMcKenzie/RadixSort' className='containerElement' id='displayThree'><span className='displayText'>Sorting Visualizer</span></a>
-        <a href='https://github.com/JensenMcKenzie/minesweeper' className='containerElement' id='displayFour'><span className='displayText'>Python GUI</span></a>
+    <ParallaxProvider>
+      <div className="App">
+        <div id='indicator'>|</div>
+        
+        <div style={{ height: '31vh', scrollSnapAlign: 'start' }} />
+        <div className='grad' id='hello'>Hello.</div>
+        <Contact />
+        <div id='introduction'>
+          My name is <span className='grad'>Jensen McKenzie</span>.<br></br>I am a software developer.
+        </div>
+
+        <div id="second" >
+          <p className='grad2'>Projects</p>
+        </div>
+        <div id="projectsInfo">Currently, I am working on developing this website, as well as others. I also have extensive experience in game development (virtual reality, 3D applications, ect.), fullstack development (frontend/backend), and other projects.</div>
+        <div id="displayContainer">
+          <Card link={"https://github.com/JensenMcKenzie/situationalvr"} imgURL={0} text={"VR Development"} size={40} />
+          <Card link={'https://github.com/JensenMcKenzie/main_portfolio'} imgURL={1} text={"Portfolio"} size={40} />
+          <Card link={'https://github.com/JensenMcKenzie/RadixSort'} imgURL={2} text={"Sorting Visualizer"} size={40} />
+          <Card link={'https://github.com/JensenMcKenzie/minesweeper'} imgURL={3} text={"Python GUI"} size={40} />
+        </div>
+        <div id="skills" className='grad' style={{ height: '100vh' }}>Skills
+          <div id="skillsInfo">I have 6+ years of experience in software development</div>
+          <div className="container3x3">
+            <Card link={"/"} imgURL={4} text={"React"} size={45} />
+            <Card link={"/"} imgURL={5} text={"Unity"} size={45} />
+            <Card link={"/"} imgURL={6} text={"C++"} size={45} />
+            <Card link={"/"} imgURL={7} text={"Python"} size={45} />
+            <Card link={"/"} imgURL={8} text={"Java"} size={45} />
+            <Card link={"/"} imgURL={9} text={"SQL"} size={45} />
+            <Card link={"/"} imgURL={10} text={"three.js"} size={45} />
+            <Card link={"/"} imgURL={11} text={"Figma"} size={45} />
+            <Card link={"/"} imgURL={11} text={"Firebase"} size={45} />
+          </div>
+        </div>
+        <div style={{ scrollSnapAlign: 'start', height: '100vh' }}>
+          <div className='grad'>Experience</div>
+        </div>
+        <div id="tempFiller"></div>
+        <div id="contact" />
+        <Form />
+        <div id="tempFiller"></div>
+        <div id="tempFiller"></div>
       </div>
-      <div id="skills" className='grad'>Skills</div>
-      <div id="skillsInfo">I have 6+ years of experience in software development</div>
-      <div id="skillsContainer">
-        <div className='containerElement' id="displayOneA"><span className='displayText'>React.js</span></div>
-        <div className='containerElement' id="displayTwoA"><span className='displayText'>Unity</span></div>
-        <div className='containerElement' id="displayThreeA"><span className='displayText'>C++</span></div>
-        <div className='containerElement' id="displayFourA"><span className='displayText'>Python</span></div>
-        <div className='containerElement' id="displayFiveA"><span className='displayText'>Java</span></div>
-        <div className='containerElement' id="displaySixA"><span className='displayText'>SQL</span></div>
-        <div className='containerElement' id="displaySevenA"><span className='displayText'>three.js</span></div>
-        <div className='containerElement' id="displayEightA"><span className='displayText'>Figma</span></div>
-        <div className='containerElement' id="displayNineA"><span className='displayText'>Firebase</span></div>
-      </div>
-      <div id="introductionText">
-        <br></br><br></br>I have been developing games, software, and websites for several years. My first hands on experience with Computer Science was in a highschool class, ever since then my passion has only continued to grow.<br></br>When I'm not at the computer, you can find me hiking, biking, or otherwise experiencing the great outdoors.
-      </div>
-      <div id="tempFiller"></div>
-      <div id="contact" />
-      <Form />
-      <div id="tempFiller"></div>
-      <div id="tempFiller"></div>
-    </div>
+    </ParallaxProvider>
   );
 }
 

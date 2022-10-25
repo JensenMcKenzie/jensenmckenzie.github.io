@@ -60,10 +60,22 @@ canvas {
   background-size: 200%;
   background-position: -100%;
   z-index: 1;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.grad2{
+  font: Helvetica;
+  background: linear-gradient(90deg, #ff1900, #ffc500);
+  background-clip: text;
+  color: transparent;
+  background-size: 200%;
+  background-position: -100%;
+  z-index: 1;
+  width: fit-content;
 }
 
 #hello {
-  margin-top: 25vh;
   position: relative;
   font-weight: 700;
   font-size: 13vh;
@@ -176,6 +188,7 @@ p {
   font-weight: 700;
   font-size: 8vh;
   height: 20vh;
+  margin-inline: auto;
 }
 
 #skills{
@@ -242,104 +255,46 @@ p {
 #displayContainer {
   --square: min(60vh, 60vw);
   position: relative;
-  display: grid;
+  display: flex;
   width: var(--square);
   height: var(--square);
   margin-inline: auto;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(2, 50%);
+  flex-flow: column wrap;
   margin-bottom: max(calc(71vh - min(60vh, 60vw)), calc(80vh - min(60vh, 60vw)));
+  align-items: center;
+  align-content: center;
 }
 
-
-.containerElement:hover {
-  transform: scale(1.1);
+.container3x3 {
+  display: grid;
+  position: relative;
+  width: 60vh;
+  height: 60vh;
+  grid-template-columns: repeat(3, min(20vh, 20vw));
+  grid-template-rows: repeat(3, min(20vh, 20vw));
+  justify-items: center;
+  align-items: center;
+  margin-inline: auto;
 }
 
-.containerElement:hover .displayText{
+.ccard-main:hover .displayText{
   opacity: 1;
-  bottom: -1%;
+  bottom: -80%;
   width: 100%;
-  background: linear-gradient(180deg, rgba(34,34,34,0) 0%, rgba(34,34,34,.6) 30%, rgba(34,34,34,.6) 100%);
 }
 
 .displayText {
-  position: absolute;
-  white-space: nowrap;
-  font-size: min(100%, 2vw);
-  height: 15%;
   opacity: 0;
-  bottom: -7%;
-  transition: .3s;
-  padding-left: 5%;
-  padding-top: 10%;
+  width: 100%;
+  align-self: flex-end;
+  transition: .5s;
+  background: linear-gradient(180deg, rgba(34,34,34,0) 0%, rgba(34,34,34,.6) 30%, rgba(34,34,34,.6) 100%);
   color: white;
-  width: 25%;
+  text-decoration: none;
 }
 
-#displayOne {
-  background-image: url("./assets/bg1.png");
-  background-size: cover;
-}
-
-#displayTwo {
-  background-image: url("./assets/bg2.png");
-  background-size: cover;
-}
-
-#displayThree {
-  background-image: url("./assets/bg3.png");
-  background-size: cover;
-}
-
-#displayFour {
-  background-image: url("./assets/bg4.png");
-  background-size: cover;
-}
-
-#displayOneA {
-  background-image: url("./assets/bg1a.png");
-  background-size: cover;
-}
-
-#displayTwoA {
-  background-image: url("./assets/bg2a.png");
-  background-size: cover;
-}
-
-#displayThreeA {
-  background-image: url("./assets/bg3a.png");
-  background-size: cover;
-}
-
-#displayFourA {
-  background-image: url("./assets/bg4a.png");
-  background-size: cover;
-}
-
-#displayFiveA {
-  background-image: url("./assets/bg5a.png");
-  background-size: cover;
-}
-
-#displaySixA {
-  background-image: url("./assets/bg6a.png");
-  background-size: cover;
-}
-
-#displaySevenA {
-  background-image: url("./assets/bg7a.png");
-  background-size: cover;
-}
-
-#displayEightA {
-  background-image: url("./assets/bg8a.png");
-  background-size: cover;
-}
-
-#displayNineA {
-  background-image: url("./assets/bg9a.png");
-  background-size: cover;
+a {
+  text-decoration: none;
 }
 
 
@@ -411,4 +366,42 @@ p {
 
 .submitWrapper {
   width: 100%;
+}
+
+.ccard-main {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ccard {
+  width: 17vh;
+  height: 17vh;
+  border-radius: 5px;
+  transition: box-shadow 0.5s;
+  will-change: transform;
+  background-size: cover;
+  display: flex;
+}
+
+
+.testDiv {
+  background: linear-gradient(90deg, rgba(244,0,255,1) 0%, rgba(255,57,57,1) 25%, rgba(255,57,57,1) 75%, rgba(244,0,255,1) 100%);
+  animation: animatedbg 1.5s infinite linear reverse;
+  background-size: 200%;
+  background-position: -100%;
+  width: 100px;
+  height: 100px;
+  mask-image: url("./assets/test.svg");
+  -webkit-mask-image: url("./assets/test.svg");
+}
+
+#map {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15vw;
+  height: 100vh;
+  z-index: 100;
 }
