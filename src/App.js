@@ -1,22 +1,14 @@
 import './App.css';
 import * as React from 'react';
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from '@react-three/drei';
-import { Suspense, useRef } from 'react';
 import mailIcon from './assets/mail-icon.png';
 import Form from './form.js';
 import Contact from './contact.js';
-import Menu from './menu.js';
-import { useParallax, ParallaxProvider, Parallax } from 'react-scroll-parallax';
-import { AnimationLoader } from 'three';
-import { useSpring, animated } from "@react-spring/web";
-import test from './assets/test.svg';
+import { ParallaxProvider } from 'react-scroll-parallax';
+import { useSpring } from "@react-spring/web";
 import Card from './Card.js';
-import Minimap from './Minimap';
 import PageMap from 'react-pagemap'
 
 function App() {
- 
   const arrowStyle = useSpring({
     loop: { reverse: true },
     from: { y: 0 },
@@ -25,12 +17,41 @@ function App() {
       duration: 700
     },
   })
-  
+
+  PageMap.defaultProps = {
+    viewport: null,
+    styles: {
+      container: {
+        position: 'fixed',
+        top: '8px',
+        right: '8px',
+        width: '100px',
+        height: '100%',
+        zIndex: '100'
+      },
+      'header,footer,section,article': 'rgba(0, 0, 0, 1)',
+      'h1,a': 'rgba(0, 0, 0, 1)',
+      'h2,h3,h4': 'rgba(0, 0, 0, 1)',
+      '#App': 'rgba(0, 0, 0,1 )',
+      '#second': 'rgba(255,171,0,.5)',
+
+    },
+    back: 'rgba(0, 0, 0, 0.02)',
+    view: 'rgba(0, 0, 0, 0.2)',
+    drag: 'rgba(0, 0, 0, 0.10)',
+    interval: null
+  }
   return (
     <ParallaxProvider>
       <div className="App">
+
+        <div style={{ position: 'fixed', top: '0', left: '0' }}>
+          <div className="shape-blob" id="shape-blob"></div>
+
+          <div className="shape-blob two" id='blob2'></div>
+        </div>
         <div id='indicator'>|</div>
-        
+        <PageMap />
         <div style={{ height: '31vh', scrollSnapAlign: 'start' }} />
         <div className='grad' id='hello'>Hello.</div>
         <Contact />
@@ -48,9 +69,9 @@ function App() {
           <Card link={'https://github.com/JensenMcKenzie/RadixSort'} imgURL={2} text={"Sorting Visualizer"} size={40} />
           <Card link={'https://github.com/JensenMcKenzie/minesweeper'} imgURL={3} text={"Python GUI"} size={40} />
         </div>
-        <div id="skills" className='grad' style={{ height: '100vh' }}>Skills
-          <div id="skillsInfo">I have 6+ years of experience in software development</div>
-          <div className="container3x3">
+        <div id="skills">
+          <p className='grad3' style={{ height: 'fit-content', fontWeight: '700', fontSize: '8vh' }}>Skills</p>
+          <div className="container3x3" style={{ marginTop: '10%' }}>
             <Card link={"/"} imgURL={4} text={"React"} size={45} />
             <Card link={"/"} imgURL={5} text={"Unity"} size={45} />
             <Card link={"/"} imgURL={6} text={"C++"} size={45} />
@@ -63,7 +84,7 @@ function App() {
           </div>
         </div>
         <div style={{ scrollSnapAlign: 'start', height: '100vh' }}>
-          <div className='grad'>Experience</div>
+          <p className='grad4' style={{ height: 'fit-content', fontWeight: '700', fontSize: '8vh' }}>Experience</p>
         </div>
         <div id="tempFiller"></div>
         <div id="contact" />
@@ -85,12 +106,9 @@ window.onbeforeunload = function (e) {
   localStorage.setItem('scrollpos', window.scrollY);
 };
 
-
 window.addEventListener("scroll", function () {
   let value = window.scrollY;
-  console.log(value + " " + this.window.innerHeight);
   if (value > (this.window.innerHeight * 4)) {
-    console.log("5");
     this.document.getElementById('indicator').style.transform = "translateY(200px)";
     this.document.getElementById('contactInner').style.backgroundImage = "url()";
     this.document.getElementById('contactInner').style.backgroundColor = "#222";
@@ -101,7 +119,6 @@ window.addEventListener("scroll", function () {
     this.document.getElementById('contactOuter').style.borderRadius = "30px";
   }
   else if (value > (this.window.innerHeight * 2.7)) {
-    console.log("4");
     this.document.getElementById('contactInner').innerHTML = "";
     this.document.getElementById('contactInner').style.backgroundImage = "url(" + mailIcon + ")";
     this.document.getElementById('contactInner').style.backgroundColor = "";
@@ -113,7 +130,6 @@ window.addEventListener("scroll", function () {
     this.document.getElementById('indicator').style.transform = "translateY(150px)";
   }
   else if (value > (this.window.innerHeight * 1.8)) {
-    console.log("3");
     this.document.getElementById('contactInner').innerHTML = "";
     this.document.getElementById('contactInner').style.backgroundImage = "url(" + mailIcon + ")";
     this.document.getElementById('contactInner').style.backgroundColor = "";
@@ -125,7 +141,7 @@ window.addEventListener("scroll", function () {
     this.document.getElementById('indicator').style.transform = "translateY(100px)";
   }
   else if (value >= (this.window.innerHeight * .9)) {
-    console.log("2");
+
     this.document.getElementById('indicator').style.transform = "translateY(50px)";
     this.document.getElementById('contactInner').innerHTML = "";
     this.document.getElementById('contactInner').style.backgroundImage = "url(" + mailIcon + ")";
@@ -135,9 +151,11 @@ window.addEventListener("scroll", function () {
     this.document.getElementById('contactOuter').style.width = "8vh";
     this.document.getElementById('contactOuter').style.height = "8vh";
     this.document.getElementById('contactOuter').style.borderRadius = "50px";
+    this.document.getElementById('shape-blob').style.background = "linear-gradient(90deg, #ff1900, #ffc500)";
+    this.document.getElementById('blob2').style.backgroundPositionX = "-10%";
+
   }
   else if (value < this.window.innerHeight) {
-    console.log("1");
     this.document.getElementById('indicator').style.transform = "translateY(0px)";
     this.document.getElementById('contactInner').style.backgroundImage = "url()";
     this.document.getElementById('contactInner').style.backgroundColor = "#222";
@@ -146,6 +164,10 @@ window.addEventListener("scroll", function () {
     this.document.getElementById('contactOuter').style.left = "25vw";
     this.document.getElementById('contactOuter').style.width = "min(460px, 50%)";
     this.document.getElementById('contactOuter').style.borderRadius = "30px";
+    this.document.getElementById('shape-blob').style.background = "linear-gradient(90deg, #12c2e9, #c471ed, #f64f59)";
+    this.document.getElementById('blob2').style.backgroundPositionX = "100%";
+
   }
 });
+
 export default App;

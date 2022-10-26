@@ -75,6 +75,28 @@ canvas {
   width: fit-content;
 }
 
+.grad3{
+  font: Helvetica;
+  background: linear-gradient(90deg, #12c2e9, #c471ed, #f64f59);
+  background-clip: text;
+  color: transparent;
+  background-size: 200%;
+  background-position: -100%;
+  z-index: 1;
+  width: fit-content;
+}
+
+.grad4{
+  font: Helvetica;
+  background: linear-gradient(90deg, #00f260, #0575e6);
+  background-clip: text;
+  color: transparent;
+  background-size: 200%;
+  background-position: -100%;
+  z-index: 1;
+  width: fit-content;
+}
+
 #hello {
   position: relative;
   font-weight: 700;
@@ -188,16 +210,15 @@ p {
   font-weight: 700;
   font-size: 8vh;
   height: 20vh;
+  width: fit-content;
   margin-inline: auto;
 }
 
 #skills{
   position: relative;
   scroll-snap-align: start;
+  height: 100vh;
   padding-top: 3vh;
-  font-weight: 700;
-  font-size: 8vh;
-  height: 12vh;
 }
 
 #skillsContainer {
@@ -268,8 +289,8 @@ p {
 .container3x3 {
   display: grid;
   position: relative;
-  width: 60vh;
-  height: 60vh;
+  width: 60%;
+  height: 60%;
   grid-template-columns: repeat(3, min(20vh, 20vw));
   grid-template-rows: repeat(3, min(20vh, 20vw));
   justify-items: center;
@@ -305,14 +326,6 @@ a {
   font-size: 3vw;
   height: 60vh;
   scroll-snap-align: start;
-}
-
-#skillsInfo {
-  color: white;
-  padding-inline: 15vw;
-  width: 70vw;
-  font-size: 4vmin;
-  height: 10vh;
 }
 
 #tempFiller {
@@ -404,4 +417,77 @@ a {
   width: 15vw;
   height: 100vh;
   z-index: 100;
+}
+
+
+
+.shape-blob {
+	background :linear-gradient(90deg, #f400ff, #ff3939 #00f260, #0575e6, #ff1900, #ffc500);
+  background-position-x: right;
+  background-size: 200%;
+	height: 200px;
+	width: 200px;
+	border-radius: 30% 50% 20% 40%;
+  	animation: 
+		transform 20s ease-in-out infinite both alternate,
+		movement_one 40s ease-in-out infinite both;
+	opacity:.7;
+	position: absolute;
+	left: 70%;
+	top: 50%;
+  transition: background-position-x 1s;
+}
+.shape-blob.one{
+	height: 500px;
+	width: 500px;
+	left: -200px;
+	top: -150px;
+	transform: rotate(-180deg);
+	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+}
+
+.shape-blob.two{
+	height: 350px;
+	width: 350px;
+	left: 500px;
+	top: -150px;
+	transform: rotate(-180deg);
+	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+}
+
+@keyframes transform
+{
+    0%,
+  100% { border-radius: 33% 67% 70% 30% / 30% 30% 70% 70%; } 
+   20% { border-radius: 37% 63% 51% 49% / 37% 65% 35% 63%; } 
+   40% { border-radius: 36% 64% 64% 36% / 64% 48% 52% 36%; } 
+   60% { border-radius: 37% 63% 51% 49% / 30% 30% 70% 70%; } 
+   80% { border-radius: 40% 60% 42% 58% / 41% 51% 49% 59%; } 
+}
+
+
+@keyframes movement_one
+{
+    0%,
+  100% { transform: none; }
+   50% { transform: translate(50%, 20%) rotateY(10deg) scale(1.2); }
+}
+
+@keyframes movement_two
+{
+    0%,
+  500% { transform: none; }
+   50% { transform: translate(50%, 20%) rotate(-200deg) scale(1.2);}
+}
+
+h1 {
+	font-family: 'Playfair Display', serif;
+	font-size: 5em;
+	letter-spacing: 2px;
+	font-weight: 900;
+	color: white;
+	line-height: .9em;
+	position: relative;
+	z-index: 4;
+	text-shadow: 2px 3px 15px rgba(0,0,0,.15);
 }
