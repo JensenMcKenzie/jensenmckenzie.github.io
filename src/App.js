@@ -6,7 +6,7 @@ import Contact from './contact.js';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { useSpring } from "@react-spring/web";
 import Card from './Card.js';
-import PageMap from 'react-pagemap'
+import PageMap from 'react-pagemap';
 
 function App() {
   const arrowStyle = useSpring({
@@ -46,9 +46,11 @@ function App() {
       <div className="App">
 
         <div style={{ position: 'fixed', top: '0', left: '0' }}>
-          <div className="shape-blob" id="shape-blob"></div>
-
+          <div className="shape-blob one" id="blob1"></div>
           <div className="shape-blob two" id='blob2'></div>
+          <div className="shape-blob three" id='blob3'></div>
+          <div className="shape-blob four" id='blob4'></div>
+
         </div>
         <div id='indicator'>|</div>
         <PageMap />
@@ -128,6 +130,9 @@ window.addEventListener("scroll", function () {
     this.document.getElementById('contactOuter').style.height = "8vh";
     this.document.getElementById('contactOuter').style.borderRadius = "50px";
     this.document.getElementById('indicator').style.transform = "translateY(150px)";
+    for (let i = 1; i < 5; i++) {
+      this.document.getElementById('blob' + i).style.backgroundPositionX = "100%";
+    }
   }
   else if (value > (this.window.innerHeight * 1.8)) {
     this.document.getElementById('contactInner').innerHTML = "";
@@ -139,6 +144,10 @@ window.addEventListener("scroll", function () {
     this.document.getElementById('contactOuter').style.height = "8vh";
     this.document.getElementById('contactOuter').style.borderRadius = "50px";
     this.document.getElementById('indicator').style.transform = "translateY(100px)";
+    for (let i = 1; i < 5; i++) {
+      this.document.getElementById('blob' + i).style.backgroundPositionX = "70%";
+    }
+
   }
   else if (value >= (this.window.innerHeight * .9)) {
 
@@ -151,8 +160,10 @@ window.addEventListener("scroll", function () {
     this.document.getElementById('contactOuter').style.width = "8vh";
     this.document.getElementById('contactOuter').style.height = "8vh";
     this.document.getElementById('contactOuter').style.borderRadius = "50px";
-    this.document.getElementById('shape-blob').style.background = "linear-gradient(90deg, #ff1900, #ffc500)";
-    this.document.getElementById('blob2').style.backgroundPositionX = "-10%";
+    //this.document.getElementById('shape-blob').style.background = "linear-gradient(90deg, #ff1900, #ffc500)";
+    for (let i = 1; i < 5; i++) {
+      this.document.getElementById('blob' + i).style.backgroundPositionX = "35%";
+    }
 
   }
   else if (value < this.window.innerHeight) {
@@ -164,8 +175,10 @@ window.addEventListener("scroll", function () {
     this.document.getElementById('contactOuter').style.left = "25vw";
     this.document.getElementById('contactOuter').style.width = "min(460px, 50%)";
     this.document.getElementById('contactOuter').style.borderRadius = "30px";
-    this.document.getElementById('shape-blob').style.background = "linear-gradient(90deg, #12c2e9, #c471ed, #f64f59)";
-    this.document.getElementById('blob2').style.backgroundPositionX = "100%";
+    //this.document.getElementById('shape-blob').style.background = "linear-gradient(90deg, #12c2e9, #c471ed, #f64f59)";
+    for (let i = 1; i < 5; i++) {
+      this.document.getElementById('blob' + i).style.backgroundPositionX = "0%";
+    }
 
   }
 });
